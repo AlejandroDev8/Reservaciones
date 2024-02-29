@@ -19,10 +19,10 @@
             id="sala"
             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 w-full"
         >
-            <option value="" disabled selected>-- Seleccione una sala --</option>
-            <option value="1">Sala Rafael Piña</option>
-            <option value="2">Sala de Ex-Directores</option>
-            <option value="3">Auditorio</option>
+            <option disabled selected>-- Seleccione una sala --</option>
+            @foreach ($salas as $sala)
+                <option value="{{$sala->id}}">{{$sala->salas}}</option>
+            @endforeach
         </select>
     </div>
     <div>
