@@ -19,7 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [ReservacionController::class, 'index'])->middleware(['auth', 'verified'])->name('solicitudes.index');
+Route::get('/dashboard', [ReservacionController::class, 'index'])->middleware(['auth', 'verified'])->name('reservaciones.index');
+Route::get('/reservaciones/create', [ReservacionController::class, 'create'])->middleware(['auth', 'verified'])->name('reservaciones.create');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
