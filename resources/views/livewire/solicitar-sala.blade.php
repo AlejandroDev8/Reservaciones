@@ -43,9 +43,9 @@
             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 w-full"
         >
             <option value="" disabled selected>-- Seleccione un acomodo --</option>
-            <option value="1">Acomodo en "U"</option>
-            <option value="2">Acomodo tipo Mesas y Sillas</option>
-            <option value="3">Acomodo tipo Conferencia</option>
+            @foreach ($acomodos as $acomodo)
+                <option value="{{$acomodo->id}}">{{$acomodo->acomodo}}</option>
+            @endforeach
         </select>
     </div>
     <div>
