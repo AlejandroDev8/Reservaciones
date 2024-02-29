@@ -42,7 +42,7 @@
             <x-link
               href="{{ route('password.request') }}"
             >
-              Olvidaste tu contraseña?
+              Olvidaste tu contraseña
             </x-link>
 
           </div>
