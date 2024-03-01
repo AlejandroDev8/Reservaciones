@@ -1,6 +1,6 @@
 <form class="md:w-1/2 space-y-5" wire:submit.prevent='solicitarSala'>
     <h1 class="font-bold text-lg mb-3">Formulario de Reservación</h1>
-    <x-input-error :messages="str_replace('email', 'correo electrónico', $errors->get('email'))" class="mt-2" />
+    {{-- <x-input-error :messages="str_replace('email', 'correo electrónico', $errors->get('email'))" class="mt-2" /> --}}
     <div>
         <x-input-label for="email" :value="__('Correo Eléctronico')" />
         <x-text-input
@@ -11,6 +11,9 @@
             :value="$userEmail"
             placeholder="Correo electrónico para mandar la confirmación de la reservación"
         />
+        @error('email')
+            <livewire:mostrar-alerta :message="str_replace('email', 'correo electrónico', $message)" />
+        @enderror
     </div>
     <div>
         <x-input-label for="sala" :value="__('Seleccione una sala')" />
@@ -24,6 +27,9 @@
                 <option value="{{$sala->id}}">{{$sala->salas}}</option>
             @endforeach
         </select>
+        @error('sala')
+            <livewire:mostrar-alerta :message="$message" />
+        @enderror
     </div>
     <div>
         <x-input-label for="fecha" :value="__('Seleccione una Fecha')"/>
@@ -34,6 +40,9 @@
             wire:model="fecha"
             :value="old('fecha')"
         />
+        @error('fecha')
+            <livewire:mostrar-alerta :message="$message" />
+        @enderror
     </div>
     <div>
         <x-input-label for="sillas" :value="__('Seleccione el acamodo de sillas')" />
@@ -47,6 +56,9 @@
                 <option value="{{$acomodo->id}}">{{$acomodo->acomodo}}</option>
             @endforeach
         </select>
+        @error('sillas')
+            <livewire:mostrar-alerta :message="str_replace('sillas', 'acomode de sillas', $message)" />
+        @enderror
     </div>
     <div>
         <x-input-label for="extras" :value="__('Especificaciones extras')" />
@@ -57,6 +69,9 @@
             rows="10"
             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 w-full" placeholder="Especificacione extras para añadir a la sala (Limpieza, más sillas y/o mesas, etc..)"
         ></textarea>
+        @error('extras')
+            <livewire:mostrar-alerta :message="$message" />
+        @enderror
     </div>
     <x-primary-button>
         {{ __('Enviar Solicitud') }}
