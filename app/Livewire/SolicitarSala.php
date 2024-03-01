@@ -18,9 +18,9 @@ class SolicitarSala extends Component
 
     protected $rules = [
         'email' => 'required|email',
-        'sala' => 'required',
+        'sala' => 'required|numeric|between:1,3',
         'fecha' => 'required|unique:reservacions',
-        'acomodo' => 'required',
+        'acomodo' => 'required|numeric|between:1,3',
         'extras' => 'required|max:100',
     ];
 
