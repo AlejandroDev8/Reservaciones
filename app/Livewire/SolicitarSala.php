@@ -12,14 +12,14 @@ class SolicitarSala extends Component
     public $email;
     public $sala;
     public $fecha;
-    public $sillas;
+    public $acomodo;
     public $extras;
 
     protected $rules = [
         'email' => 'required|email',
         'sala' => 'required',
         'fecha' => 'required',
-        'sillas' => 'required',
+        'acomodo' => 'required',
         'extras' => 'required|max:100',
     ];
 
@@ -27,7 +27,7 @@ class SolicitarSala extends Component
     {
         $this->email = auth()->user()->email;
         $this->sala = '';
-        $this->sillas = '';
+        $this->acomodo = '';
     }
 
     public function solicitarSala()

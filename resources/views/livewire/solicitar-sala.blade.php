@@ -47,7 +47,7 @@
     <div>
         <x-input-label for="sillas" :value="__('Seleccione el acamodo de sillas')" />
         <select
-            wire:model="sillas"
+            wire:model="acomodo"
             id="sillas"
             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 w-full"
         >
@@ -56,8 +56,8 @@
                 <option value="{{$acomodo->id}}">{{$acomodo->acomodo}}</option>
             @endforeach
         </select>
-        @error('sillas')
-            <livewire:mostrar-alerta :message="str_replace('sillas', 'acomode de sillas', $message)" />
+        @error('acomodo')
+            <livewire:mostrar-alerta :message="str_replace('acomodo', 'acomo de de sillas', $message)" />
         @enderror
     </div>
     <div>
