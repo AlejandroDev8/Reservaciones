@@ -9,6 +9,8 @@ class Reservacion extends Model
 {
     use HasFactory;
 
+    protected $casts = ['fecha' => 'date'];
+
     protected $fillable = [
         'email',
         'sala_id',
