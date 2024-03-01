@@ -8,7 +8,7 @@
             id="email"
             class="block mt-1 w-full"
             type="email"
-            name="email"
+            wire:model="email"
             :value="$userEmail"
             placeholder="Correo electrónico para mandar la confirmación de la reservación"
         />
@@ -16,11 +16,11 @@
     <div>
         <x-input-label for="sala" :value="__('Seleccione una sala')" />
         <select
-            name="salas"
+            wire:model="sala"
             id="sala"
             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 w-full"
         >
-            <option disabled selected>-- Seleccione una sala --</option>
+            <option value="" disabled selected>-- Seleccione una sala --</option>
             @foreach ($salas as $sala)
                 <option value="{{$sala->id}}">{{$sala->salas}}</option>
             @endforeach
@@ -32,14 +32,14 @@
             id="fecha"
             class="block mt-1 w-full"
             type="date"
-            name="fecha"
+            wire:model="fecha"
             :value="old('fecha')"
         />
     </div>
     <div>
         <x-input-label for="sillas" :value="__('Seleccione el acamodo de sillas')" />
         <select
-            name="sillas"
+            wire:model="sillas"
             id="sillas"
             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 w-full"
         >
@@ -52,7 +52,7 @@
     <div>
         <x-input-label for="extras" :value="__('Especificaciones extras')" />
         <textarea
-            name="extras"
+            wire:model="extras"
             id="extras"
             cols="30"
             rows="10"
