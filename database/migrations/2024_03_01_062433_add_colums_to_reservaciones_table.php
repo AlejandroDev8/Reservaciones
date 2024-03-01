@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('reservaciones', function (Blueprint $table) {
+        Schema::table('reservacions', function (Blueprint $table) {
             $table->string('email');
             $table->foreignId('sala_id')->constrained()->onDelete('cascade');
             $table->date('fecha');

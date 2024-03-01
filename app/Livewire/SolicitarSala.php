@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Sala;
 use App\Models\Acomodo;
+use App\Models\Reservacion;
 use App\Models\User;
 use Livewire\Component;
 
@@ -33,6 +34,17 @@ class SolicitarSala extends Component
     public function solicitarSala()
     {
         $datos = $this->validate();
+
+        // Crear la solicitud
+
+        Reservacion::create([
+            'email' => $datos['email'],
+            'sala_id' => $datos['sala'],
+            'fecha' => $datos['fecha'],
+            'acomodo_id' => $datos['acomodo'],
+            'extras' => $datos['extras'],
+            'user_id' => auth()->user()->id,
+        ]);
     }
 
     public function render()
