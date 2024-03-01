@@ -58,6 +58,9 @@ class SolicitarSala extends Component
     public function render()
     {
 
+        $minDate = date('2024-01-01');
+        $maxDate = date('2024-12-31');
+
         // Obetener al usuario autenticado
         $user = auth()->user();
 
@@ -70,6 +73,8 @@ class SolicitarSala extends Component
             'salas' => $salas,
             'acomodos' => $acomodos,
             'userEmail' => $user->email,
+            'minDate' => $minDate,
+            'maxDate' => $maxDate,
         ]);
     }
 }

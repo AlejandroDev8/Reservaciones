@@ -14,7 +14,7 @@ class SalasSeeder extends Seeder
     public function run(): void
     {
         DB::table('salas')->insert([
-            'salas' => 'Sala Rafel Piña',
+            'salas' => 'Sala Rafael Piña',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
