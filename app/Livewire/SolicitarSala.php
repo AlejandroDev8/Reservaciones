@@ -30,6 +30,11 @@ class SolicitarSala extends Component
         $this->sillas = '';
     }
 
+    public function solicitarSala()
+    {
+        $datos = $this->validate();
+    }
+
     public function render()
     {
 

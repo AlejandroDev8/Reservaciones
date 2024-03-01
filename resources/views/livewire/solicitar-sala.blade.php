@@ -1,5 +1,4 @@
-<form class="md:w-1/2 space-y-5" novalidate>
-    @csrf
+<form class="md:w-1/2 space-y-5" wire:submit.prevent='solicitarSala'>
     <h1 class="font-bold text-lg mb-3">Formulario de Reservación</h1>
     <x-input-error :messages="str_replace('email', 'correo electrónico', $errors->get('email'))" class="mt-2" />
     <div>
