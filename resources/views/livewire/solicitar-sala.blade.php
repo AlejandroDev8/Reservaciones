@@ -9,7 +9,8 @@
             class="block mt-1 w-full"
             type="email"
             name="email"
-            :value="old('email')"
+            :value="$userEmail"
+            placeholder="Correo electrónico para mandar la confirmación de la reservación"
         />
     </div>
     <div>
