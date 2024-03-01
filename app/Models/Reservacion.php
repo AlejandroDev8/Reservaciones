@@ -19,4 +19,10 @@ class Reservacion extends Model
         'extras',
         'user_id',
     ];
+
+    // Relación con la tabla Sala
+    public function sala()
+    {
+        return $this->belongsTo(Sala::class, 'sala_id');
+    }
 }
