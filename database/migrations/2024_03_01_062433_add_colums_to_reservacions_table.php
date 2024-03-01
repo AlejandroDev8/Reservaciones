@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('reservacions', function (Blueprint $table) {
             $table->string('email');
             $table->foreignId('sala_id')->constrained()->onDelete('cascade');
-            $table->date('fecha');
+            $table->date('fecha')->unique();
             $table->foreignId('acomodo_id')->constrained()->onDelete('cascade');
             $table->text('extras');
             $table->integer('aceptado')->default(1); // 1 = aceptado, 0 = rechazado
@@ -27,7 +27,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('reservaciones', function (Blueprint $table) {
+        Schema::table('reservacions', function (Blueprint $table) {
             $table->dropForeign(['sala_id']);
             $table->dropForeign(['acomodo_id']);
             $table->dropForeign(['user_id']);

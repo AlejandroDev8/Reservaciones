@@ -19,7 +19,7 @@ class SolicitarSala extends Component
     protected $rules = [
         'email' => 'required|email',
         'sala' => 'required',
-        'fecha' => 'required',
+        'fecha' => 'required|unique:reservacions',
         'acomodo' => 'required',
         'extras' => 'required|max:100',
     ];
@@ -45,6 +45,14 @@ class SolicitarSala extends Component
             'extras' => $datos['extras'],
             'user_id' => auth()->user()->id,
         ]);
+
+        // Crear un mensaje flash
+
+        session()->flash('message', 'La solicitud se ha registrado correctamente');
+
+        // Redireccionar a la página de inicio
+
+        return redirect()->route('reservaciones.index');
     }
 
     public function render()
