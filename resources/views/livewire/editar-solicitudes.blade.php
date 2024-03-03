@@ -1,10 +1,10 @@
-<form class="md:w-1/2 space-y-5" wire:submit.prevent='solicitarSala'>
+<form class="md:w-1/2 space-y-5" wire:submit.prevent='editarSolicitud'>
     <h1 class="font-bold text-lg mb-3">Formulario de Reservación</h1>
     {{--
     <x-input-error :messages="str_replace('email', 'correo electrónico', $errors->get('email'))" class="mt-2" /> --}}
     <div>
         <x-input-label for="email" :value="__('Correo Electrónico')" />
-        <x-text-input id="email" class="block mt-1 w-full" type="email" wire:model="email" :value="$userEmail"
+        <x-text-input id="email" class="block mt-1 w-full" type="email" wire:model="email"
             placeholder="Correo electrónico para mandar la confirmación de la reservación" />
         @error('email')
         <livewire:mostrar-alerta :message="str_replace('email', 'correo electrónico', $message)" />
