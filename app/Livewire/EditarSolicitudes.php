@@ -4,10 +4,25 @@ namespace App\Livewire;
 
 use App\Models\Sala;
 use App\Models\Acomodo;
+use App\Models\Reservacion;
+use Illuminate\Support\Carbon;
 use Livewire\Component;
 
 class EditarSolicitudes extends Component
 {
+    public $sala;
+    public $fecha;
+    public $acomodo;
+    public $extras;
+
+    public function mount(Reservacion $reservacion)
+    {
+        $this->sala = $reservacion->sala_id;
+        $this->fecha = Carbon::parse($reservacion->fecha)->format('Y-m-d');
+        $this->acomodo = $reservacion->acomodo_id;
+        $this->extras = $reservacion->extras;
+    }
+
     public function render()
     {
         $minDate = date('2024-01-01');

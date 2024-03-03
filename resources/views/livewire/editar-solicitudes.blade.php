@@ -54,6 +54,6 @@
         @enderror
     </div>
     <x-primary-button>
-        {{ __('Enviar Solicitud') }}
+        {{ __('Editar Solicitud') }}
     </x-primary-button>
 </form>

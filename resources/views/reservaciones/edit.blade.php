@@ -13,7 +13,7 @@
                             class="text-indigo-700">{{$reservacion->sala->salas}}</span>
                     </h1>
                     <div class="md:flex md:justify-center p-5">
-                        <livewire:editar-solicitudes />
+                        <livewire:editar-solicitudes :reservacion="$reservacion" />
                     </div>
                 </div>
             </div>
