@@ -33,3 +33,27 @@
         {{ $solicitudes->links() }}
     </div>
 </div>
+
+@push('scripts')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    Swal.fire({
+  title: '¿Estás seguro de eliminar la solicitud?',
+  text: "No podrás revertir esto!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Sí, eliminar!',
+    cancelButtonText: 'Cancelar'
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire(
+      'Solicitud eliminada correctamente!',
+        'Tu solicitud ha sido eliminada.',
+      'success'
+    )
+  }
+})
+</script>
+@endpush
