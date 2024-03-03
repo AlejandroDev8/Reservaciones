@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservacion;
 use Illuminate\Http\Request;
 
 class ReservacionController extends Controller
@@ -41,9 +42,11 @@ class ReservacionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Reservacion $reservacion)
     {
-        //
+        return view('reservaciones.edit', [
+            'reservacion' => $reservacion
+        ]);
     }
 
     /**
