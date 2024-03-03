@@ -44,6 +44,8 @@ class ReservacionController extends Controller
      */
     public function edit(Reservacion $reservacion)
     {
+        $this->authorize('update', $reservacion);
+
         return view('reservaciones.edit', [
             'reservacion' => $reservacion
         ]);
