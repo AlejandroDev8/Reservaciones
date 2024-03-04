@@ -3,11 +3,16 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Reservacion;
 
 class MostrarSolicitudesAdmin extends Component
 {
     public function render()
     {
-        return view('livewire.mostrar-solicitudes-admin');
+        $solicitudes = Reservacion::all();
+
+        return view('livewire.mostrar-solicitudes-admin', [
+            'solicitudes' => $solicitudes
+        ]);
     }
 }
