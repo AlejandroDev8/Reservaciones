@@ -21,7 +21,11 @@
                 {{ session('message') }}
             </div>
             @endif
+            @if (auth()->user()->rol === 0)
             <livewire:mostrar-solicitudes />
+            @else
+            <livewire:mostrar-solicitudes-admin>
+                @endif
         </div>
     </div>
 </x-app-layout>

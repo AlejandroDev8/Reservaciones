@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('sala_id')->constrained()->onDelete('cascade');
             $table->date('fecha')->unique();
             $table->foreignId('acomodo_id')->constrained()->onDelete('cascade');
-            $table->text('extras');
+            $table->text('extras')->nullable();
             $table->integer('aceptado')->default(1); // 1 = aceptado, 0 = rechazado
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
