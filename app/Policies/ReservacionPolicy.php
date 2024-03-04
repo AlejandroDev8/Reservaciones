@@ -13,7 +13,7 @@ class ReservacionPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->rol === 0 || $user->rol === 1;
     }
 
     /**
@@ -21,7 +21,11 @@ class ReservacionPolicy
      */
     public function view(User $user, Reservacion $reservacion): bool
     {
-        //
+        if ($user->rol === 0) {
+            return $user->id === $reservacion->user_id;
+        } else {
+            return true; // Si el usuario tiene rol 1, puede ver todas las reservaciones
+        }
     }
 
     /**
