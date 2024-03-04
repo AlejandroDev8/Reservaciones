@@ -33,7 +33,7 @@ class ReservacionPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->rol === 0;
     }
 
     /**

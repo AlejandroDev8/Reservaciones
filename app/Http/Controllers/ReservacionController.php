@@ -33,6 +33,7 @@ class ReservacionController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Reservacion::class);
         return view('reservaciones.create');
     }
 
