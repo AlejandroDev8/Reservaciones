@@ -3,7 +3,8 @@
     @foreach ($solicitudes as $solicitud)
     <div class="p-6 text-gray-900 bg-white md:flex justify-between items-center">
         <div class="leading-10 space-y-3">
-            <h2 class="text-xl font-bold">
+            <p class="text-sm text-gray-600 font-bold">ID: {{$solicitud->id}} </p>
+            <h2 class=" text-xl font-bold">
                 @if ($solicitud->sala)
                 Sala Solicitada: <span class="text-indigo-600 normal-case font-normal">{{ $solicitud->sala->salas
                     }}</span>
