@@ -21,7 +21,7 @@ class SolicitarSala extends Component
         'sala' => 'required|numeric|between:1,3',
         'fecha' => 'required|unique:reservacions',
         'acomodo' => 'required|numeric|between:1,3',
-        'extras' => 'required|max:100',
+        'extras' => 'max:100',
     ];
 
     public function mount()
