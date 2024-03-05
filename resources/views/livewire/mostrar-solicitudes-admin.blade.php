@@ -31,10 +31,6 @@
             <x-danger-button wire:click="rechazarSolicitud({{ $solicitud->id }})">
                 Rechazar
             </x-danger-button>
-            @else
-            <x-danger-button wire:click="regresarSolicitud({{ $solicitud->id }})">
-                Regresar a pendiente
-            </x-danger-button>
             @endif
         </div>
     </div>

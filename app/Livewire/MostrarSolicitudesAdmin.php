@@ -26,7 +26,14 @@ class MostrarSolicitudesAdmin extends Component
 
         Notification::route('mail', 'alejandrodeveloper417@gmail.com')
             ->notify(new EmailMateriales($solicitud));
-        return redirect()->back();
+
+        // crear un mensaje flash
+
+        session()->flash('message', 'La solicitud se ha aceptado correctamente');
+
+        // Redireccionar a la página de inicio
+
+        return redirect()->route('reservaciones.index');
     }
 
     public function rechazarSolicitud($id)
