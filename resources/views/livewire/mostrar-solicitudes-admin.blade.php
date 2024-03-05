@@ -11,6 +11,8 @@
                 Sin sala asociada
                 @endif
             </h2>
+            <p class="text-sm text-gray-600 font-bold">Nombre del solicitante: <span
+                    class="text-indigo-600 normal-case">{{$solicitud->user->name}}</span></p>
             <p class="text-sm text-gray-600 font-bold">Correo electrónico asociado: <span
                     class="text-indigo-600 normal-case">{{ $solicitud->email }}</span></p>
             <p class="text-sm text-gray-500 font-bold">Fecha de Reservación: <span
@@ -27,13 +29,11 @@
             </button>
         </div>
     </div>
+    <hr>
     @endforeach
     @else
     <div class="p-6 text-gray-900 bg-white">
         <p class="text-xl font-bold">No hay solicitudes actualmente</p>
     </div>
     @endif
-    <div class="mt-10">
-        {{ $solicitudes->links() }}
-    </div>
 </div>
