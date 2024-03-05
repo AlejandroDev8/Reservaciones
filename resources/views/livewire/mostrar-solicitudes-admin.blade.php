@@ -19,15 +19,24 @@
             <p class="text-sm text-gray-500 font-bold">Fecha de Reservación: <span
                     class="text-indigo-600 normal-case">{{
                     $solicitud->fecha->format('d/m/Y') }}</span> </p>
+            <p>Estado: <span class="text-indigo-600 normal-case">{{$solicitud->estados->estados}}</span></p>
         </div>
         <div class="flex flex-col md:flex-row items-stretch gap-3 mt-5 md:mt-0">
-            <button class="bg-blue-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center">
+            @if ($solicitud->estado_id === 1)
+            <button wire:click='aceptarSolicitud({{$solicitud->id}})'
+                class="bg-blue-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center">
                 Aceptar
             </button>
-            <button wire:click="$dispatch('mostrarAlerta', {{ $solicitud->id }})"
+            <button wire:click="rechazarSolicitud({{ $solicitud->id }})"
                 class="bg-red-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center">
                 Rechazar
             </button>
+            @else
+            <button wire:click="regresarSolicitud({{ $solicitud->id }})"
+                class="bg-red-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center">
+                Regresarla a estado pendiente
+            </button>
+            @endif
         </div>
     </div>
     <hr>
