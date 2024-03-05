@@ -30,4 +30,9 @@ class Reservacion extends Model
     {
         return $this->belongsTo(Sala::class, 'sala_id');
     }
+
+    public function estados()
+    {
+        return $this->belongsTo(Estados::class, 'estado_id');
+    }
 }

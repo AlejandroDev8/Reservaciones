@@ -14,6 +14,7 @@
           class="text-indigo-600 normal-case">{{ $solicitud->email }}</span></p>
       <p class="text-sm text-gray-500 font-bold">Fecha de Reservación: <span class="text-indigo-600 normal-case">{{
           $solicitud->fecha->format('d/m/Y') }}</span> </p>
+      <p>Estado: <span class="text-indigo-600 normal-case">{{$solicitud->estados->estados}}</span></p>
     </div>
     <div class="flex flex-col md:flex-row items-stretch gap-3 mt-5 md:mt-0">
       <a href="{{route('reservaciones.edit', $solicitud->id)}}"
