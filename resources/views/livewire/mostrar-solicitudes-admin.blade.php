@@ -23,19 +23,18 @@
         </div>
         <div class="flex flex-col md:flex-row items-stretch gap-3 mt-5 md:mt-0">
             @if ($solicitud->estado_id === 1)
-            <button wire:click='aceptarSolicitud({{$solicitud->id}})'
-                class="bg-blue-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center">
-                Aceptar
-            </button>
-            <button wire:click="rechazarSolicitud({{ $solicitud->id }})"
-                class="bg-red-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center">
+            <form wire:submit.prevent='aceptarSolicitud({{$solicitud->id}})'>
+                <x-primary-button>
+                    Aceptar
+                </x-primary-button>
+            </form>
+            <x-danger-button wire:click="rechazarSolicitud({{ $solicitud->id }})">
                 Rechazar
-            </button>
+            </x-danger-button>
             @else
-            <button wire:click="regresarSolicitud({{ $solicitud->id }})"
-                class="bg-red-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center">
-                Regresarla a estado pendiente
-            </button>
+            <x-danger-button wire:click="regresarSolicitud({{ $solicitud->id }})">
+                Rechazar
+            </x-danger-button>
             @endif
         </div>
     </div>

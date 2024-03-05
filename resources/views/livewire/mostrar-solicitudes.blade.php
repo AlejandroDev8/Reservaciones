@@ -19,18 +19,18 @@
     <div class="flex flex-col md:flex-row items-stretch gap-3 mt-5 md:mt-0">
       @if ($solicitud->estado_id === 1)
       <a href="{{route('reservaciones.edit', $solicitud->id)}}"
-        class="bg-blue-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center">
+        class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 focus:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
         Editar
       </a>
-      <button wire:click="$dispatch('mostrarAlerta', {{ $solicitud->id }})"
+      <x-danger-button wire:click="$dispatch('mostrarAlerta', {{ $solicitud->id }})"
         class="bg-red-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center">
         Eliminar
-      </button>
+      </x-danger-button>
       @else
-      <button wire:click="$dispatch('mostrarAlerta', {{ $solicitud->id }})"
+      <x-danger-button wire:click="$dispatch('mostrarAlerta', {{ $solicitud->id }})"
         class="bg-red-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center">
         Eliminar
-      </button>
+      </x-danger-button>
       @endif
     </div>
   </div>
