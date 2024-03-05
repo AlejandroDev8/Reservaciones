@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('fecha')->unique();
             $table->foreignId('acomodo_id')->constrained()->onDelete('cascade');
             $table->text('extras')->nullable();
-            $table->integer('estado')->default(0); // 0 = pendiente, 1 = aceptado, 2 = rechazado
+            $table->foreignId('estado_id')->constrained()->onDelete('cascade'); // 0 = pendiente, 1 = aceptado, 2 = rechazado
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
@@ -31,7 +31,8 @@ return new class extends Migration
             $table->dropForeign(['sala_id']);
             $table->dropForeign(['acomodo_id']);
             $table->dropForeign(['user_id']);
-            $table->dropColumn(['email', 'sala_id', 'fecha', 'acomodo_id', 'extras', 'estado', 'user_id']);
+            $table->dropForeign(['estado_id']);
+            $table->dropColumn(['email', 'sala_id', 'fecha', 'acomodo_id', 'extras', 'estado_id', 'user_id']);
         });
     }
 };
