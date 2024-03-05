@@ -9,7 +9,7 @@ class MostrarSolicitudesAdmin extends Component
 {
     public function render()
     {
-        $solicitudes = Reservacion::all();
+        $solicitudes = Reservacion::paginate(10);
 
         return view('livewire.mostrar-solicitudes-admin', [
             'solicitudes' => $solicitudes

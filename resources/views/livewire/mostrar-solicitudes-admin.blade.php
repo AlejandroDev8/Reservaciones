@@ -37,4 +37,7 @@
         <p class="text-xl font-bold">No hay solicitudes actualmente</p>
     </div>
     @endif
+    <div class="mt-10">
+        {{ $solicitudes->links() }}
+    </div>
 </div>
