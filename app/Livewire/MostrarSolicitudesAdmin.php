@@ -4,6 +4,9 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Reservacion;
+use App\Notifications\Solicitud;
+use App\Notifications\EmailMateriales;
+use Illuminate\Support\Facades\Notification;
 
 class MostrarSolicitudesAdmin extends Component
 {
@@ -14,6 +17,16 @@ class MostrarSolicitudesAdmin extends Component
         $solicitud = Reservacion::find($id);
         $solicitud->estado_id = 2;
         $solicitud->save();
+
+        // Enviar notificación al usuario
+
+        if ($solicitud->user) {
+            $solicitud->user->notify(new Solicitud($solicitud));
+        }
+
+        Notification::route('mail', 'alejandrodeveloper417@gmail.com')
+            ->notify(new EmailMateriales($solicitud));
+        return redirect()->back();
     }
 
     public function rechazarSolicitud($id)
