@@ -48,4 +48,11 @@ class ReservacionController extends Controller
             'reservacion' => $reservacion
         ]);
     }
+
+    public function respuesta(Reservacion $reservacion)
+    {
+        return view('admin.respuesta', [
+            'reservacion' => $reservacion
+        ]);
+    }
 }

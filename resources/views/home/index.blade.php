@@ -2,16 +2,14 @@
   <div class="py-16 overflow-hidden lg:py-24 w-full">
     @if (Route::has('login'))
     <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-      @auth
-      <a href="{{ url('/dashboard') }}" class="font-semibold text-indigo-600 hover:text-indigo-900">Dashboard</a>
-      @else
+      @guest
       <a href="{{ route('login') }}" class="font-semibold text-indigo-600 hover:text-indigo-900">Inicar
         Sesión</a>
 
       @if (Route::has('register'))
       <a href="{{ route('register') }}" class="ml-4 font-semibold text-indigo-600 hover:text-indigo-900">Registrarse</a>
       @endif
-      @endauth
+      @endguest
     </div>
     @endif
     <div class=" max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">

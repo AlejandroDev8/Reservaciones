@@ -21,6 +21,7 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('/dashboard', [ReservacionController::class, 'index'])->middleware(['auth', 'verified'])->name('reservaciones.index');
 Route::get('/reservaciones/create', [ReservacionController::class, 'create'])->middleware(['auth', 'verified'])->name('reservaciones.create');
 Route::get('/reservaciones/{reservacion}/edit', [ReservacionController::class, 'edit'])->middleware(['auth', 'verified'])->name('reservaciones.edit');
+Route::get('/reservaciones/{reservacion}/respuesta', [ReservacionController::class, 'respuesta'])->middleware(['auth', 'verified'])->name('reservaciones.respuesta');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
