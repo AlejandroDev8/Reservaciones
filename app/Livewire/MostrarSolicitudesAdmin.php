@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Reservacion;
 use App\Notifications\Solicitud;
 use App\Notifications\EmailMateriales;
+use App\Notifications\SolicitudRechazada;
 use Illuminate\Support\Facades\Notification;
 
 class MostrarSolicitudesAdmin extends Component
@@ -41,13 +42,20 @@ class MostrarSolicitudesAdmin extends Component
         $solicitud = Reservacion::find($id);
         $solicitud->estado_id = 3;
         $solicitud->save();
-    }
 
-    public function regresarSolicitud($id)
-    {
-        $solicitud = Reservacion::find($id);
-        $solicitud->estado_id = 1;
-        $solicitud->save();
+        // Enviar notificación al usuario
+
+        if ($solicitud->user) {
+            $solicitud->user->notify(new SolicitudRechazada($solicitud));
+        }
+
+        // crear un mensaje flash
+
+        session()->flash('message', 'La solicitud ha sido rechazada');
+
+        // Redireccionar a la página de inicio
+
+        return redirect()->route('reservaciones.index');
     }
 
     public function render()
