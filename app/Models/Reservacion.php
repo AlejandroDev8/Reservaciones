@@ -18,6 +18,7 @@ class Reservacion extends Model
         'acomodo_id',
         'extras',
         'user_id',
+        'respuesta'
     ];
 
     public function user()

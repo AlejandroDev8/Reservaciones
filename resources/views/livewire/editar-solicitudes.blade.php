@@ -24,14 +24,6 @@
         @enderror
     </div>
     <div>
-        <x-input-label for="fecha" :value="__('Seleccione una Fecha')" />
-        <x-text-input id="fecha" class="block mt-1 w-full" type="date" wire:model="fecha" :value="old('fecha')"
-            min="{{$minDate}}" max="{{$maxDate}}" />
-        @error('fecha')
-        <livewire:mostrar-alerta :message="$message" />
-        @enderror
-    </div>
-    <div>
         <x-input-label for="sillas" :value="__('Seleccione el acomodo de sillas')" />
         <select wire:model="acomodo" id="sillas"
             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 w-full">

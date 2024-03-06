@@ -20,9 +20,8 @@ class EditarSolicitudes extends Component
     protected $rules = [
         'email' => 'required|email',
         'sala' => 'required|numeric|between:1,3',
-        'fecha' => 'required|unique:reservacions',
         'acomodo' => 'required|numeric|between:1,3',
-        'extras' => 'required|max:100',
+        'extras' => 'max:100',
     ];
 
     public function mount(Reservacion $reservacion)
@@ -43,36 +42,35 @@ class EditarSolicitudes extends Component
 
         $reservacion = Reservacion::find($this->reservacion_id);
 
-        // Si la fecha no ha cambiado, no es necesario validar
+        // Variable para  rastrear si los campos han sido editados
 
-        if ($reservacion->fecha === $datos['fecha']) {
-            $this->validate();
+        $cambios = false;
+
+        // Comprobar si los campos han sido editados y asignar los nuevos valores
+        if ($reservacion->email !== $datos['email']) {
+            $reservacion->email = $datos['email'];
+            $cambios = true;
+        }
+        if ($reservacion->sala_id !== $datos['sala']) {
+            $reservacion->sala_id = $datos['sala'];
+            $cambios = true;
+        }
+        if ($reservacion->acomodo_id !== $datos['acomodo']) {
+            $reservacion->acomodo_id = $datos['acomodo'];
+            $cambios = true;
+        }
+        if ($reservacion->extras !== $datos['extras']) {
+            $reservacion->extras = $datos['extras'];
+            $cambios = true;
         }
 
-        // Si la fecha es diferente, verificar que no exista otra solicitud con la misma fecha
-
-        if ($reservacion->fecha != $datos['fecha']) {
-            $this->validate([
-                'fecha' => 'unique:reservacions',
-            ]);
+        // Guardar los cambios solo si hay cambios
+        if ($cambios) {
+            $reservacion->save();
+            session()->flash('message', 'La solicitud se ha actualizado correctamente');
+        } else {
+            session()->flash('message', 'No se realizaron cambios en la solicitud');
         }
-
-        // Asignar los nuevos valores
-
-        $reservacion->email = $datos['email'];
-        $reservacion->sala_id = $datos['sala'];
-        $reservacion->fecha = $datos['fecha'];
-        $reservacion->acomodo_id = $datos['acomodo'];
-        $reservacion->extras = $datos['extras'];
-
-        // Guardar los cambios
-
-        $reservacion->save();
-
-        // Crear un mensaje flash
-
-        session()->flash('message', 'La solicitud se ha actualizado correctamente');
-
         // Redireccionar a la página de inicio
 
         return redirect()->route('reservaciones.index');

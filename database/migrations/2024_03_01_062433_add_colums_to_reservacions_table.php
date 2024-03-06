@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('extras')->nullable();
             $table->foreignId('estado_id')->default(1)->constrained()->onDelete('cascade'); // 1 = pendiente, 2 = aceptado, 3 = rechazado
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->text('respuesta')->nullable();
         });
     }
 
