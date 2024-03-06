@@ -1,6 +1,6 @@
 <x-app-layout>
   <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
       {{ __('Aceptar y/o Rechazar') }}
     </h2>
   </x-slot>
@@ -10,7 +10,7 @@
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900">
           <h1 class="text-3xl font-bold text-center mb-5">Sala: <span
-              class="text-indigo-700">{{$reservacion->sala->salas}}</span>
+              class="text-indigo-600">{{$reservacion->sala->salas}}</span>
           </h1>
           <div class="md:flex md:justify-center p-5">
             <livewire:respuesta :reservacion="$reservacion" />
