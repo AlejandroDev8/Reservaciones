@@ -5,7 +5,7 @@
             placeholder="Correo electrónico para mandar la confirmación de la reservación" disabled />
     </div>
     <div>
-        <x-input-label for="sala" :value="__('Seleccione una sala')" />
+        <x-input-label for="sala" :value="__('Sala Seleccionada')" />
         <select wire:model="sala" id="sala"
             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 w-full"
             disabled>
@@ -16,7 +16,7 @@
         </select>
     </div>
     <div>
-        <x-input-label for="sillas" :value="__('Seleccione el acomodo de sillas')" />
+        <x-input-label for="sillas" :value="__('Acomodo de Sillas')" />
         <select wire:model="acomodo" id="sillas"
             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 w-full"
             disabled>
@@ -33,8 +33,14 @@
             placeholder="Especificacione extras para añadir a la sala (Limpieza, más sillas y/o mesas, etc..)"
             disabled></textarea>
     </div>
-    <div class="md:w-1/2 space-y-5">
+    <div>
         <form>
+            <div>
+                <x-input-label for="respuesta" :value="__('Motivos de aceptación o rechazo de la solicitud')" />
+                <textarea wire:model="respuesta" id="respuesta" cols="30" rows="10"
+                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 w-full"
+                    placeholder="Motivos de aceptación o rechazo de la solicitud"></textarea>
+            </div>
             <x-primary-button>
                 {{ __('Aceptar Solicitud') }}
             </x-primary-button>
