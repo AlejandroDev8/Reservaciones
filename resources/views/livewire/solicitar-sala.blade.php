@@ -26,15 +26,15 @@
     <div>
         <x-input-label for="fecha_inicio" :value="__('Seleccione una Fecha de inicio')" />
         <x-text-input id="fecha_inicio" class="block mt-1 w-full" type="date" wire:model="fecha_inicio"
-            :value="old('fecha')" min="{{$minDate}}" max="{{$maxDate}}" />
+            :value="old('fecha_inicio')" min="{{$minDate}}" max="{{$maxDate}}" />
         @error('fecha_inicio')
         <livewire:mostrar-alerta :message="$message" />
         @enderror
     </div>
     <div>
         <x-input-label for="fecha_fin" :value="__('Seleccione una Fecha de fin')" />
-        <x-text-input id="fecha_fin" class="block mt-1 w-full" type="date" wire:model="fecha_fin" :value="old('fecha')"
-            min="{{$minDate}}" max="{{$maxDate}}" />
+        <x-text-input id="fecha_fin" class="block mt-1 w-full" type="date" wire:model="fecha_fin"
+            :value="old('fecha_fin')" min="{{$minDate}}" max="{{$maxDate}}" />
         @error('fecha_fin')
         <livewire:mostrar-alerta :message="$message" />
         @enderror
