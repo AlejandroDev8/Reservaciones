@@ -1,4 +1,4 @@
-<div class="md:w-1/2 space-y-5" wire:submit.prevent='editarSolicitud'>
+<div class="md:w-1/2 space-y-5">
     <div>
         <x-input-label for="email" :value="__('Correo Electrónico')" />
         <x-text-input id="email" class="block mt-1 w-full" type="email" wire:model="email"
@@ -41,9 +41,14 @@
                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 w-full"
                     placeholder="Motivos de aceptación o rechazo de la solicitud"></textarea>
             </div>
-            <x-primary-button>
-                {{ __('Aceptar Solicitud') }}
-            </x-primary-button>
+            <div class="flex justify-between mt-5 md:gap-5 gap-5">
+                <x-primary-button wire:click="aceptarSolicitud({{ $reservacion_id }})">
+                    {{ __('Aceptar Solicitud') }}
+                </x-primary-button>
+                <x-danger-button wire:click="rechazarSolicitud({{ $reservacion_id }})">
+                    {{ __('Rechazar Solicitud') }}
+                </x-danger-button>
+            </div>
         </form>
     </div>
 </div>

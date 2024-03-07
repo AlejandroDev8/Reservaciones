@@ -47,6 +47,7 @@ class Solicitud extends Notification
             ->line('Sala solicitada: ' . ($this->solicitud->sala ? $this->solicitud->sala->salas : 'Sin sala asociada'))
             ->line('Detalles extras: ' . $this->solicitud->extras)
             ->line('Fecha de Reservación: ' . $this->solicitud->fecha->format('d/m/Y'))
+            ->line('Motivo de Aceptación: ' . $this->solicitud->respuesta)
             ->line('Estado de la solicitud: Aceptada');
     }
 

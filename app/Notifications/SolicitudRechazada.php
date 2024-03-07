@@ -38,9 +38,10 @@ class SolicitudRechazada extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Tu solicitud ha sido rechazada')
+            ->subject('Solicitud de reservación de sala')
             ->line('¡Hola ' . $notifiable->name . '!')
-            ->line('Tu solicitud para reservar una sala ha sido rechazada.');
+            ->line('Tu solicitud para reservar una sala ha sido rechazada.')
+            ->line('Motivos de rechazo: ' . $this->solicitud->respuesta);
     }
 
     /**
