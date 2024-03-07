@@ -14,7 +14,8 @@ class Reservacion extends Model
     protected $fillable = [
         'email',
         'sala_id',
-        'fecha',
+        'fecha_inicio',
+        'fecha_fin',
         'acomodo_id',
         'extras',
         'user_id',

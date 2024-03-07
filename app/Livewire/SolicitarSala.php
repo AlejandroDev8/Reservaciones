@@ -12,14 +12,16 @@ class SolicitarSala extends Component
 {
     public $email;
     public $sala;
-    public $fecha;
+    public $fecha_inicio;
+    public $fecha_fin;
     public $acomodo;
     public $extras;
 
     protected $rules = [
         'email' => 'required|email',
         'sala' => 'required|numeric|between:1,3',
-        'fecha' => 'required|unique:reservacions',
+        'fecha_inicio' => 'required|unique:reservacions',
+        'fecha_fin' => 'required|unique:reservacions',
         'acomodo' => 'required|numeric|between:1,3',
         'extras' => 'max:100',
     ];
@@ -40,7 +42,8 @@ class SolicitarSala extends Component
         Reservacion::create([
             'email' => $datos['email'],
             'sala_id' => $datos['sala'],
-            'fecha' => $datos['fecha'],
+            'fecha_inicio' => $datos['fecha_inicio'],
+            'fecha_fin' => $datos['fecha_fin'],
             'acomodo_id' => $datos['acomodo'],
             'extras' => $datos['extras'],
             'user_id' => auth()->user()->id,

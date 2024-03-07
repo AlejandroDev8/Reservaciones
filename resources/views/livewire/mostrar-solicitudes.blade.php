@@ -12,8 +12,14 @@
       </h2>
       <p class="text-sm text-gray-600 font-bold">Correo electrónico asociado: <span
           class="text-indigo-600 normal-case">{{ $solicitud->email }}</span></p>
-      <p class="text-sm text-gray-500 font-bold">Fecha de Reservación: <span class="text-indigo-600 normal-case">{{
-          $solicitud->fecha->format('d/m/Y') }}</span> </p>
+      <p class="text-sm text-gray-500 font-bold">Fecha de Inicio de la Reservación: <span
+          class="text-indigo-600 normal-case">{{ \Carbon\Carbon::parse($solicitud->fecha_inicio)->format('d/m/Y') }}
+        </span>
+      </p>
+      <p class="text-sm text-gray-500 font-bold">Fecha de Fin de la Reservación: <span
+          class="text-indigo-600 normal-case">{{ \Carbon\Carbon::parse($solicitud->fecha_fin)->format('d/m/Y') }}
+        </span>
+      </p>
       <p>Estado: <span class="text-indigo-600 normal-case">{{$solicitud->estados->estados}}</span></p>
     </div>
     <div class="flex flex-col md:flex-row items-stretch gap-3 mt-5 md:mt-0">
