@@ -5,7 +5,7 @@
     <div>
         <x-input-label for="email" :value="__('Correo Electrónico')" />
         <x-text-input id="email" class="block mt-1 w-full" type="email" wire:model="email" :value="$userEmail"
-            placeholder="Correo electrónico para mandar la confirmación de la reservación" />
+            placeholder="Correo electrónico para mandar la confirmación de la reservación" disabled />
         @error('email')
         <livewire:mostrar-alerta :message="str_replace('email', 'correo electrónico', $message)" />
         @enderror
