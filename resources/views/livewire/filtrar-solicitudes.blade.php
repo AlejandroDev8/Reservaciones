@@ -37,6 +37,16 @@
                         @endforeach
                     </select>
                 </div>
+
+                <div class="mb-5">
+                    <label class="block mb-1 text-sm text-gray-700 uppercase font-bold">Estado de la Solicitud</label>
+                    <select class="border-gray-300 p-2 w-full" wire:model='estado'>
+                        <option disabled selected>-- Seleccione --</option>
+                        @foreach ($estados as $estado)
+                        <option value="{{ $estado->id }}">{{$estado->estados}}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
 
             <div class="flex justify-end">
