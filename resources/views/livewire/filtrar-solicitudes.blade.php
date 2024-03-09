@@ -9,7 +9,7 @@
                         Usuario
                     </label>
                     <select class="border-gray-300 p-2 w-full" wire:model='user'>
-                        <option disabled selected>--Seleccione--</option>
+                        <option>--Seleccione--</option>
 
                         @foreach ($users as $user )
                         <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -20,7 +20,7 @@
                 <div class="mb-5">
                     <label class="block mb-1 text-sm text-gray-700 uppercase font-bold">Sala</label>
                     <select class="border-gray-300 p-2 w-full" wire:model='sala'>
-                        <option disabled selected>--Seleccione--</option>
+                        <option>--Seleccione--</option>
 
                         @foreach ($salas as $sala )
                         <option value="{{ $sala->id }}">{{ $sala->salas }}</option>
@@ -31,7 +31,7 @@
                 <div class="mb-5">
                     <label class="block mb-1 text-sm text-gray-700 uppercase font-bold">Acomodo</label>
                     <select class="border-gray-300 p-2 w-full" wire:model='acomodo'>
-                        <option disabled selected>-- Seleccione --</option>
+                        <option>-- Seleccione --</option>
                         @foreach ($acomodos as $acomodo)
                         <option value="{{ $acomodo->id }}">{{$acomodo->acomodo}}</option>
                         @endforeach
@@ -41,7 +41,7 @@
                 <div class="mb-5">
                     <label class="block mb-1 text-sm text-gray-700 uppercase font-bold">Estado de la Solicitud</label>
                     <select class="border-gray-300 p-2 w-full" wire:model='estado'>
-                        <option disabled selected>-- Seleccione --</option>
+                        <option>-- Seleccione --</option>
                         @foreach ($estados as $estado)
                         <option value="{{ $estado->id }}">{{$estado->estados}}</option>
                         @endforeach

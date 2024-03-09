@@ -9,12 +9,6 @@ use Livewire\Attributes\On;
 
 class MostrarSolicitudes extends Component
 {
-    public function getFechaInicioFormattedAttribute()
-    {
-        return $this->fecha_inicio ? \Carbon\Carbon::parse($this->fecha_inicio)->format('d/m/Y') : null;
-    }
-
-
     protected $listeners = ['eliminarSolicitud'];
 
     public function eliminarSolicitud(Reservacion $reservacion)

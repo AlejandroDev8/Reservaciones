@@ -18,7 +18,12 @@ class FiltrarSolicitudes extends Component
 
     public function filtrarSolicitudes()
     {
-        dd('buscando...');
+        $this->dispatch('filtrarSolicitudes', [
+            'sala' => $this->sala,
+            'acomodo' => $this->acomodo,
+            'user' => $this->user,
+            'estado' => $this->estado
+        ]);
     }
 
     public function render()
