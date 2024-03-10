@@ -12,7 +12,7 @@ class MostrarSolicitudesAdmin extends Component
     public $user;
     public $estado;
 
-    protected $listeners = ['filtrarSolicitudes' => 'buscar'];
+    protected $listeners = ['terminosBusqueda' => 'buscar'];
 
     public function buscar($sala, $acomodo, $user, $estado)
     {
@@ -24,7 +24,13 @@ class MostrarSolicitudesAdmin extends Component
 
     public function render()
     {
-        $solicitudes = Reservacion::all();
+        // $solicitudes = Reservacion::all();
+
+        $solicitudes = Reservacion::where('sala_id', 'like', '%' . $this->sala . '%')
+            ->where('acomodo_id', 'like', '%' . $this->acomodo . '%')
+            ->where('user_id', 'like', '%' . $this->user . '%')
+            ->where('estado_id', 'like', '%' . $this->estado . '%')
+            ->get();
 
         return view('livewire.mostrar-solicitudes-admin', [
             'solicitudes' => $solicitudes

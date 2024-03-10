@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 @empty
-                <p class="p-3 text-center text-sm text-gray-600">No hay Solicitudes aún</p>
+                <p class="p-3 text-center text-2xl text-gray-600">No hay Solicitudes aún</p>
                 @endforelse
             </div>
         </div>

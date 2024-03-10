@@ -10,7 +10,6 @@ use Livewire\Component;
 
 class FiltrarSolicitudes extends Component
 {
-
     public $sala;
     public $acomodo;
     public $user;
@@ -18,12 +17,7 @@ class FiltrarSolicitudes extends Component
 
     public function filtrarSolicitudes()
     {
-        $this->dispatch('filtrarSolicitudes', [
-            'sala' => $this->sala,
-            'acomodo' => $this->acomodo,
-            'user' => $this->user,
-            'estado' => $this->estado
-        ]);
+        $this->dispatch('terminosBusqueda', $this->sala, $this->acomodo, $this->user, $this->estado);
     }
 
     public function render()
