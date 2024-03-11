@@ -17,7 +17,8 @@ class Respuesta extends Component
     public $reservacion_id;
     public $email;
     public $sala;
-    public $fecha;
+    public $fecha_inicio;
+    public $fecha_fin;
     public $acomodo;
     public $extras;
     public $respuesta;
@@ -27,7 +28,8 @@ class Respuesta extends Component
         $this->reservacion_id = $reservacion->id;
         $this->email = $reservacion->email;
         $this->sala = $reservacion->sala_id;
-        $this->fecha = Carbon::parse($reservacion->fecha)->format('Y-m-d');
+        $this->fecha_inicio = Carbon::parse($reservacion->fecha)->format('Y-m-d');
+        $this->fecha_fin = Carbon::parse($reservacion->fecha_fin)->format('Y-m-d');
         $this->acomodo = $reservacion->acomodo_id;
         $this->extras = $reservacion->extras;
     }
@@ -81,12 +83,20 @@ class Respuesta extends Component
 
     public function render(Reservacion $reservacion)
     {
+        $minDate = date('2024-01-01');
+        $maxDate = date('2024-12-31');
+
+        $reservacion = Reservacion::find($this->reservacion_id);
+
         $salas = Sala::all();
         $acomodos = Acomodo::all();
 
         return view('livewire.respuesta', [
             'salas' => $salas,
             'acomodos' => $acomodos,
+            'minDate' => $minDate,
+            'maxDate' => $maxDate,
+            'reservacion' => $reservacion,
         ]);
     }
 }

@@ -16,6 +16,22 @@
         </select>
     </div>
     <div>
+        <x-input-label for="fecha_inicio" :value="__('Seleccione una Fecha de inicio')" />
+        <x-text-input id="fecha_inicio" class="block mt-1 w-full" type="date" wire:model="fecha_inicio"
+            :value="old('fecha_inicio')" min="{{$minDate}}" max="{{$maxDate}}" disabled />
+        @error('fecha_inicio')
+        <livewire:mostrar-alerta :message="$message" />
+        @enderror
+    </div>
+    <div>
+        <x-input-label for="fecha_fin" :value="__('Seleccione una Fecha de fin')" />
+        <x-text-input id="fecha_fin" class="block mt-1 w-full" type="date" wire:model="fecha_fin"
+            :value="old('fecha_fin')" min="{{$minDate}}" max="{{$maxDate}}" disabled />
+        @error('fecha_fin')
+        <livewire:mostrar-alerta :message="$message" />
+        @enderror
+    </div>
+    <div>
         <x-input-label for="sillas" :value="__('Acomodo de Sillas')" />
         <select wire:model="acomodo" id="sillas"
             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-300 focus:ring-opacity-50 w-full"
