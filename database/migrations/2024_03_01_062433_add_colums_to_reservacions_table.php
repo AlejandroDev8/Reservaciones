@@ -14,13 +14,16 @@ return new class extends Migration
         Schema::table('reservacions', function (Blueprint $table) {
             $table->string('email');
             $table->foreignId('sala_id')->constrained()->onDelete('cascade');
-            $table->date('fecha_inicio')->unique();
-            $table->date('fecha_fin')->unique();
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
             $table->foreignId('acomodo_id')->constrained()->onDelete('cascade');
             $table->text('extras')->nullable();
             $table->foreignId('estado_id')->default(1)->constrained()->onDelete('cascade'); // 1 = pendiente, 2 = aceptado, 3 = rechazado
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->text('respuesta')->nullable();
+
+            // Crear un índice único compuesto sin incluir el campo 'id'
+            $table->unique(['sala_id', 'fecha_inicio', 'fecha_fin'], 'idx_unique_reservation');
         });
     }
 

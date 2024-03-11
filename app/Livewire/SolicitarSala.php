@@ -17,15 +17,6 @@ class SolicitarSala extends Component
     public $acomodo;
     public $extras;
 
-    protected $rules = [
-        'email' => 'required|email',
-        'sala' => 'required|numeric|between:1,3',
-        'fecha_inicio' => 'required|unique:reservacions',
-        'fecha_fin' => 'required|unique:reservacions',
-        'acomodo' => 'required|numeric|between:1,3',
-        'extras' => 'max:100',
-    ];
-
     public function mount()
     {
         $this->email = auth()->user()->email;
@@ -35,40 +26,55 @@ class SolicitarSala extends Component
 
     public function solicitarSala()
     {
-        $datos = $this->validate();
+        $this->validate([
+            'email' => 'required|email',
+            'sala' => 'required|numeric|between:1,3',
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
+            'acomodo' => 'required|numeric|between:1,3',
+            'extras' => 'max:100',
+        ]);
 
-        // Crear la solicitud
+        // Verificar si las fechas están disponibles para la sala seleccionada
+        $reservas = Reservacion::where('sala_id', $this->sala)
+            ->where(function ($query) {
+                $query->whereBetween('fecha_inicio', [$this->fecha_inicio, $this->fecha_fin])
+                    ->orWhereBetween('fecha_fin', [$this->fecha_inicio, $this->fecha_fin])
+                    ->orWhere(function ($query) {
+                        $query->where('fecha_inicio', '<=', $this->fecha_inicio)
+                            ->where('fecha_fin', '>=', $this->fecha_fin);
+                    });
+            })
+            ->exists();
 
+        if ($reservas) {
+            $this->addError('fecha_inicio', 'Las fechas seleccionadas ya han sido reservadas para esta sala.');
+            $this->addError('fecha_fin', 'Las fechas seleccionadas ya han sido reservadas para esta sala.');
+            return;
+        }
+
+        // Crear la reserva
         Reservacion::create([
-            'email' => $datos['email'],
-            'sala_id' => $datos['sala'],
-            'fecha_inicio' => $datos['fecha_inicio'],
-            'fecha_fin' => $datos['fecha_fin'],
-            'acomodo_id' => $datos['acomodo'],
-            'extras' => $datos['extras'],
+            'email' => $this->email,
+            'sala_id' => $this->sala,
+            'fecha_inicio' => $this->fecha_inicio,
+            'fecha_fin' => $this->fecha_fin,
+            'acomodo_id' => $this->acomodo,
+            'extras' => $this->extras,
             'user_id' => auth()->user()->id,
         ]);
 
-        // Crear un mensaje flash
-
         session()->flash('message', 'La solicitud se ha registrado correctamente');
-
-        // Redireccionar a la página de inicio
-
         return redirect()->route('reservaciones.index');
     }
 
+
     public function render()
     {
+        $minDate = date('Y-m-d');
+        $maxDate = date('Y-m-d', strtotime('+1 year'));
 
-        $minDate = date('2024-01-01');
-        $maxDate = date('2024-12-31');
-
-        // Obetener al usuario autenticado
         $user = auth()->user();
-
-        // Consultar la base de datos
-
         $salas = Sala::all();
         $acomodos = Acomodo::all();
 
