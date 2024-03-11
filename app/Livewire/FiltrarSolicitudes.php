@@ -11,13 +11,12 @@ use Livewire\Component;
 class FiltrarSolicitudes extends Component
 {
     public $sala;
-    public $acomodo;
     public $user;
     public $estado;
 
     public function filtrarSolicitudes()
     {
-        $this->dispatch('terminosBusqueda', $this->sala, $this->acomodo, $this->user, $this->estado);
+        $this->dispatch('terminosBusqueda', $this->sala, $this->user, $this->estado);
     }
 
     public function render()
