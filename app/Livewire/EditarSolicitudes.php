@@ -13,7 +13,8 @@ class EditarSolicitudes extends Component
     public $reservacion_id;
     public $email;
     public $sala;
-    public $fecha;
+    public $fecha_inicio;
+    public $fecha_fin;
     public $acomodo;
     public $extras;
 
@@ -22,6 +23,8 @@ class EditarSolicitudes extends Component
         'sala' => 'required|numeric|between:1,3',
         'acomodo' => 'required|numeric|between:1,3',
         'extras' => 'max:100',
+        'fecha_inicio' => 'required|date',
+        'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
     ];
 
     public function mount(Reservacion $reservacion)
@@ -29,7 +32,8 @@ class EditarSolicitudes extends Component
         $this->reservacion_id = $reservacion->id;
         $this->email = $reservacion->email;
         $this->sala = $reservacion->sala_id;
-        $this->fecha = Carbon::parse($reservacion->fecha)->format('Y-m-d');
+        $this->fecha_inicio = Carbon::parse($reservacion->fecha)->format('Y-m-d');
+        $this->fecha_fin = Carbon::parse($reservacion->fecha)->format('Y-m-d');
         $this->acomodo = $reservacion->acomodo_id;
         $this->extras = $reservacion->extras;
     }
@@ -55,6 +59,16 @@ class EditarSolicitudes extends Component
             $reservacion->sala_id = $datos['sala'];
             $cambios = true;
         }
+        // Comprobar si los campos han sido editados y asignar los nuevos valores
+        if ($reservacion->fecha_inicio !== $datos['fecha_inicio']) {
+            $reservacion->fecha_inicio = $datos['fecha_inicio'];
+            $cambios = true;
+        }
+        if ($reservacion->fecha_fin !== $datos['fecha_fin']) {
+            $reservacion->fecha_fin = $datos['fecha_fin'];
+            $cambios = true;
+        }
+
         if ($reservacion->acomodo_id !== $datos['acomodo']) {
             $reservacion->acomodo_id = $datos['acomodo'];
             $cambios = true;
@@ -82,11 +96,12 @@ class EditarSolicitudes extends Component
         $maxDate = date('2024-12-31');
 
         // Consultar la base de datos
-
+        $solicitudes = Reservacion::all();
         $salas = Sala::all();
         $acomodos = Acomodo::all();
 
         return view('livewire.editar-solicitudes', [
+            'solicitudes' => $solicitudes,
             'salas' => $salas,
             'acomodos' => $acomodos,
             'minDate' => $minDate,
