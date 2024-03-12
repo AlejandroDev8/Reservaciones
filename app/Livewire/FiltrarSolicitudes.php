@@ -16,6 +16,17 @@ class FiltrarSolicitudes extends Component
 
     public function filtrarSolicitudes()
     {
+        // Verificar si los campos están seleccionados
+        if ($this->sala == "--Seleccione--") {
+            $this->sala = null;
+        }
+        if ($this->user == "--Seleccione--") {
+            $this->user = null;
+        }
+        if ($this->estado == "-- Seleccione --") {
+            $this->estado = null;
+        }
+
         $this->dispatch('terminosBusqueda', $this->sala, $this->user, $this->estado);
     }
 
