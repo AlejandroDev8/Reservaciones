@@ -11,9 +11,12 @@
                     <select class="border-gray-300 p-2 w-full" wire:model='user'>
                         <option>--Seleccione--</option>
 
-                        @foreach ($users as $user )
+                        @foreach ($users as $user)
+                        @if ($user->rol == 0)
                         <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @endif
                         @endforeach
+
                     </select>
                 </div>
 
